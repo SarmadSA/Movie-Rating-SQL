@@ -26,3 +26,13 @@ FROM Movie m, Reviewer re, Rating ra
 WHERE m.mID = ra.mID
   AND re.rID = ra.rID
 ORDER BY re.name, m.title, ra.stars
+
+--Q6
+SELECT r.name , m.title
+FROM Rating r1, Rating r2, Reviewer r, Movie m
+WHERE r1.rID = r2.rID
+  AND r1.mID = r2.mID
+  AND r1.rID = r.rID
+  AND r1.mID = m.mID
+  AND r1.stars > r2.stars
+  AND r1.ratingDate > r2.ratingDate
