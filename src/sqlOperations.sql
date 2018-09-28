@@ -45,3 +45,21 @@ WHERE r.mID = m.mID
                  FROM Rating ra
                  WHERE m.mID = ra.mID)
 ORDER BY m.title
+
+--Q8
+SELECT max.title AS title, (max.stars - min.stars) AS stars
+FROM
+     (SELECT DISTINCT m.title, r.stars
+      FROM Movie m, Rating r
+      WHERE r.mID = m.mID
+        AND r.stars = (SELECT MAX(ra.stars)
+                       FROM Rating ra
+                       WHERE m.mID = ra.mID)) max,
+     (SELECT DISTINCT m.title, r.stars
+      FROM Movie m, Rating r
+      WHERE r.mID = m.mID
+        AND r.stars = (SELECT MIN(ra.stars)
+                       FROM Rating ra
+                       WHERE m.mID = ra.mID)) min
+WHERE max.title = min.title
+ORDER BY stars DESC, title
