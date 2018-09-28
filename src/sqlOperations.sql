@@ -36,3 +36,12 @@ WHERE r1.rID = r2.rID
   AND r1.mID = m.mID
   AND r1.stars > r2.stars
   AND r1.ratingDate > r2.ratingDate
+
+--Q7
+SELECT DISTINCT m.title, r.stars
+FROM Movie m, Rating r
+WHERE r.mID = m.mID
+  AND r.stars = (SELECT MAX(ra.stars)
+                 FROM Rating ra
+                 WHERE m.mID = ra.mID)
+ORDER BY m.title
