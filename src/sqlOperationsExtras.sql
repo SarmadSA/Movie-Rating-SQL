@@ -10,3 +10,8 @@ SELECT r.name, m.title, ra.stars
 FROM Reviewer r, Movie m, Rating ra
 WHERE r.rID = ra.rID AND ra.mID = m.mID
 AND m.director = r.name
+
+--Q3
+SELECT r.name FROM Reviewer r
+UNION
+SELECT m.title FROM Movie m
