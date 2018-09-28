@@ -58,3 +58,11 @@ WHERE re.rID = ra.rID
   AND (SELECT COUNT(r.rID)
         From Rating r
         WHERE r.rID = ra.rID) >=3
+
+--Q9
+SELECT m.title, m.director
+FROM Movie m
+WHERE (SELECT COUNT(m1.director)
+        FROM Movie m1
+        WHERE m1.director = m.director) >= 2
+ORDER BY m.director, m.title
