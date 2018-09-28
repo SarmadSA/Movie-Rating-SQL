@@ -19,3 +19,10 @@ SELECT rev.name
 FROM Reviewer rev, Rating ra
 WHERE ra.rID = rev.rID
   AND ra.ratingDate IS NULL
+
+--Q5
+SELECT re.name, m.title, ra.stars, ra.ratingDate
+FROM Movie m, Reviewer re, Rating ra
+WHERE m.mID = ra.mID
+  AND re.rID = ra.rID
+ORDER BY re.name, m.title, ra.stars
