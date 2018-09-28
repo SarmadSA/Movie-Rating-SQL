@@ -25,3 +25,13 @@ FROM Movie m, Rating ra, Reviewer re
 WHERE m.mID = ra.mID
   AND re.rID = ra.rID
   AND re.name = 'Chris Jackson'
+
+--Q5
+SELECT DISTINCT re1.name, re2.name
+FROM Reviewer re1, Reviewer re2, Rating r1, Rating r2, Movie m
+WHERE m.mID = r1.mID
+  AND m.mID = r2.mID
+  AND re1.rID = r1.rID
+  AND re2.rID = r2.rID
+  AND re2.rID <> re1.rID
+  AND re2.name > re1.name
