@@ -42,3 +42,11 @@ FROM Reviewer re, Movie m, Rating ra
 WHERE re.rID = ra.rID
   AND ra.mID = m.mID
   AND ra.stars = (SELECT MIN(stars) FROM Rating)
+
+--Q7
+SELECT DISTINCT m.title, (SELECT AVG(r.stars)
+                          FROM Rating r
+                          WHERE r.mID = m.mID) AS avgRating
+FROM Movie m, Rating ra
+WHERE m.mID = ra.mID
+ORDER BY avgRating DESC, m.title
