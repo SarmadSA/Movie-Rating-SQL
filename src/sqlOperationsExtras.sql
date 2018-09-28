@@ -66,3 +66,15 @@ WHERE (SELECT COUNT(m1.director)
         FROM Movie m1
         WHERE m1.director = m.director) >= 2
 ORDER BY m.director, m.title
+
+--Q10
+SELECT *
+FROM (SELECT DISTINCT m.title, (SELECT AVG(r.stars)
+                                FROM Rating r
+                                WHERE m.mID = r.mID) AS stars
+      FROM Movie m) r
+WHERE r.stars = (SELECT MAX(stars)
+                 FROM (SELECT DISTINCT m.title, (SELECT AVG(r.stars)
+                                                  FROM Rating r
+                                                  WHERE m.mID = r.mID) AS stars
+                        FROM Movie m))
