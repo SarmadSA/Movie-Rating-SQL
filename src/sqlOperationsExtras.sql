@@ -50,3 +50,11 @@ SELECT DISTINCT m.title, (SELECT AVG(r.stars)
 FROM Movie m, Rating ra
 WHERE m.mID = ra.mID
 ORDER BY avgRating DESC, m.title
+
+--Q8
+SELECT DISTINCT re.name
+FROM Reviewer re, Rating ra
+WHERE re.rID = ra.rID
+  AND (SELECT COUNT(r.rID)
+        From Rating r
+        WHERE r.rID = ra.rID) >=3
