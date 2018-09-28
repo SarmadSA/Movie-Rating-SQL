@@ -13,3 +13,9 @@ SELECT DISTINCT m.title
 From Movie m
 LEFT JOIN Rating r ON m.mID = r.mID
 WHERE r.mID IS NULL
+
+--Q4
+SELECT rev.name
+FROM Reviewer rev, Rating ra
+WHERE ra.rID = rev.rID
+  AND ra.ratingDate IS NULL
