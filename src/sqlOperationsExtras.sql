@@ -35,3 +35,10 @@ WHERE m.mID = r1.mID
   AND re2.rID = r2.rID
   AND re2.rID <> re1.rID
   AND re2.name > re1.name
+
+--Q6
+SELECT DISTINCT re.name, m.title, ra.stars
+FROM Reviewer re, Movie m, Rating ra
+WHERE re.rID = ra.rID
+  AND ra.mID = m.mID
+  AND ra.stars = (SELECT MIN(stars) FROM Rating)
