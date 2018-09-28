@@ -15,3 +15,13 @@ AND m.director = r.name
 SELECT r.name FROM Reviewer r
 UNION
 SELECT m.title FROM Movie m
+
+--Q4
+SELECT m.title
+FROM Movie m
+EXCEPT
+SELECT m.title
+FROM Movie m, Rating ra, Reviewer re
+WHERE m.mID = ra.mID
+  AND re.rID = ra.rID
+  AND re.name = 'Chris Jackson'
