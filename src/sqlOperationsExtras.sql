@@ -90,3 +90,10 @@ WHERE r.stars = (SELECT MIN(stars)
                                                   FROM Rating r
                                                   WHERE m.mID = r.mID) AS stars
                         FROM Movie m))
+
+--Q12
+SELECT m.director, m.title, max(ra.stars)
+FROM Movie m, Rating ra
+WHERE m.mid = ra.mid
+  AND m.director is NOT NULL
+GROUP BY m.director
