@@ -78,3 +78,15 @@ WHERE r.stars = (SELECT MAX(stars)
                                                   FROM Rating r
                                                   WHERE m.mID = r.mID) AS stars
                         FROM Movie m))
+
+--Q11
+SELECT *
+FROM (SELECT DISTINCT m.title, (SELECT AVG(r.stars)
+                                FROM Rating r
+                                WHERE m.mID = r.mID) AS stars
+      FROM Movie m) r
+WHERE r.stars = (SELECT MIN(stars)
+                 FROM (SELECT DISTINCT m.title, (SELECT AVG(r.stars)
+                                                  FROM Rating r
+                                                  WHERE m.mID = r.mID) AS stars
+                        FROM Movie m))
